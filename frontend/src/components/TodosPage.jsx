@@ -7,7 +7,6 @@ import SingleTodo from './SingleTodo';
 function TodosPage() {
   const [loading, setLoading] = useState(false);
   const [todos, setTodos] = useState([]);
-
   const [showAddTodoPopup, setShowAddTodoPopup] = useState(false);
 
   useEffect(() => {
@@ -32,6 +31,14 @@ function TodosPage() {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
   };
 
+  const handleUpdateTodo = (updatedTodo) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo._id === updatedTodo._id ? updatedTodo : todo
+      )
+    );
+  };
+
   return (
     <div>
       {loading ? (
@@ -46,6 +53,9 @@ function TodosPage() {
                 title={todo.title}
                 text={todo.text}
                 onDeleteTodo={handleDeleteTodo}
+                onUpdateTodo={handleUpdateTodo}
+                createdAt={todo.createdAt}
+                updatedAt={todo.updatedAt}
               />
             ))}
           </ul>

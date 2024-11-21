@@ -13,3 +13,7 @@
 .confirm-popup button {
   margin: 5px;
 }
+
+.striked {
+  text-decoration: line-through;
+}

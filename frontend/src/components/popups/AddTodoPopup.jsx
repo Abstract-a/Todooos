@@ -1,12 +1,12 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import axios from 'axios';
 // import Spinner from '../Spinner';
 
-// eslint-disable-next-line react/prop-types
 function AddTodoPopup({ onAddTodo, show, onCancel }) {
+  const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,6 +26,12 @@ function AddTodoPopup({ onAddTodo, show, onCancel }) {
       console.error(error);
     }
   };
+
+  const handleCancel = () => {
+    setTitle('');
+    setText('');
+    onCancel();
+  };
   if (!show) return null;
 
   return (
@@ -41,15 +47,14 @@ function AddTodoPopup({ onAddTodo, show, onCancel }) {
           onChange={(e) => setTitle(e.target.value)}
         />
         <label htmlFor="text">text</label>
-        <input
-          type="textarea"
+        <textarea
           id="text"
           name="text"
           value={text}
           required
           onChange={(e) => setText(e.target.value)}
         />
-        <button onClick={onCancel}>cancel</button>
+        <button onClick={handleCancel}>cancel</button>
         <button type="submit" disabled={loading}>
           {loading ? 'Submitting...' : 'Submit'}
         </button>
