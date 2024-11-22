@@ -222,3 +222,22 @@ li.completed:hover .striked {
   gap: 5px;
   flex-direction: column;
 }
+
+.search-bar {
+  width: 400px;
+  padding: 10px;
+  margin: auto;
+}
+
+.search-bar input {
+  padding: 10px;
+
+  width: 90%;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

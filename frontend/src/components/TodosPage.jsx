@@ -4,10 +4,12 @@ import { useState, useEffect } from 'react';
 import AddTodoPopup from './popups/AddTodoPopup';
 import SingleTodo from './SingleTodo';
 import AddIcon from '@mui/icons-material/Add';
+import SearchBar from './SearchBar.jsx';
 
 function TodosPage() {
   const [loading, setLoading] = useState(false);
   const [todos, setTodos] = useState([]);
+  const [filteredTodos, setFilteredTodos] = useState([]);
   const [showAddTodoPopup, setShowAddTodoPopup] = useState(false);
 
   useEffect(() => {
@@ -16,20 +18,25 @@ function TodosPage() {
       .get('http://localhost:5000/api/todos')
       .then((response) => {
         setTodos(response.data);
+        setFilteredTodos(response.data);
         setLoading(false);
       })
       .catch((error) => {
-        setLoading(true);
+        setLoading(false);
         console.log(error);
       });
   }, []);
 
   const handleAddTodo = (newTodo) => {
     setTodos((prev) => [...prev, newTodo]);
+    setFilteredTodos((prev) => [...prev, newTodo]);
   };
 
   const handleDeleteTodo = (id) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
+    setFilteredTodos((prevTodos) =>
+      prevTodos.filter((todo) => todo._id !== id)
+    );
   };
 
   const handleUpdateTodo = (updatedTodo) => {
@@ -37,6 +44,19 @@ function TodosPage() {
       prevTodos.map((todo) =>
         todo._id === updatedTodo._id ? updatedTodo : todo
       )
+    );
+
+    setFilteredTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo._id === updatedTodo._id ? updatedTodo : todo
+      )
+    );
+  };
+
+  const handleSearch = (searchTerm) => {
+    const lowercasedTerm = searchTerm.toLowerCase();
+    setFilteredTodos(
+      todos.filter((todo) => todo.title.toLowerCase().includes(lowercasedTerm))
     );
   };
 
@@ -49,8 +69,9 @@ function TodosPage() {
           <button className="add-btn" onClick={() => setShowAddTodoPopup(true)}>
             <AddIcon />
           </button>
+          <SearchBar onSearch={handleSearch} />
           <ul>
-            {todos.map((todo) => (
+            {filteredTodos.map((todo) => (
               <SingleTodo
                 key={todo._id}
                 id={todo._id}
