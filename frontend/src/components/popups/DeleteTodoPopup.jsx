@@ -2,10 +2,17 @@
 function DeleteTodoPopup({ show, onConfirm, onCancel }) {
   if (!show) return null;
   return (
-    <div className="confirm-popup">
-      <p>Are you sure you want to delete this todo?</p>
-      <button onClick={onConfirm}>Yes</button>
-      <button onClick={onCancel}>No</button>
+    <div className="backdrop" onClick={onCancel}>
+      <div
+        className="confirm-popup delete-popup"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <p>Are you sure you want to delete this todo?</p>
+        <div>
+          <button onClick={onConfirm}>Yes</button>
+          <button onClick={onCancel}>No</button>
+        </div>
+      </div>
     </div>
   );
 }

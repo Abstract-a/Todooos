@@ -39,32 +39,34 @@ function UpdateTodoPopup({
 
   if (!show) return null;
   return (
-    <div className="confirm-popup">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">title</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          value={title}
-          required
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <label htmlFor="text">text</label>
-        <textarea
-          id="text"
-          name="text"
-          value={text}
-          required
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button type="button" onClick={handleCancel}>
-          cancel
-        </button>
-        <button type="submit" disabled={loading}>
-          {loading ? 'Submitting...' : 'Submit'}
-        </button>
-      </form>
+    <div className="backdrop" onClick={onCancel}>
+      <div className="confirm-popup" onClick={(e) => e.stopPropagation()}>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="title">title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={title}
+            required
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <label htmlFor="text">text</label>
+          <textarea
+            id="text"
+            name="text"
+            value={text}
+            required
+            onChange={(e) => setText(e.target.value)}
+          />
+          <button type="button" onClick={handleCancel}>
+            cancel
+          </button>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Submitting...' : 'Submit'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import Spinner from './Spinner';
 import { useState, useEffect } from 'react';
 import AddTodoPopup from './popups/AddTodoPopup';
 import SingleTodo from './SingleTodo';
+import AddIcon from '@mui/icons-material/Add';
 
 function TodosPage() {
   const [loading, setLoading] = useState(false);
@@ -40,11 +41,14 @@ function TodosPage() {
   };
 
   return (
-    <div>
+    <div className="container">
       {loading ? (
         <Spinner />
       ) : (
         <div>
+          <button className="add-btn" onClick={() => setShowAddTodoPopup(true)}>
+            <AddIcon />
+          </button>
           <ul>
             {todos.map((todo) => (
               <SingleTodo
@@ -59,7 +63,6 @@ function TodosPage() {
               />
             ))}
           </ul>
-          <button onClick={() => setShowAddTodoPopup(true)}>add</button>
           <AddTodoPopup
             onAddTodo={handleAddTodo}
             onCancel={() => setShowAddTodoPopup(false)}
