@@ -37,7 +37,6 @@ button.add-btn {
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 20px;
   font-size: 16px;
   transition: background-color 0.3s ease;
 }
@@ -121,6 +120,15 @@ textarea {
   resize: none;
   overflow: auto;
   min-height: 300px;
+}
+
+textarea,
+input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
 }
 
 .confirm-popup button {
@@ -225,14 +233,12 @@ li.completed:hover .striked {
 
 .search-bar {
   width: 400px;
-  padding: 10px;
-  margin: auto;
 }
 
 .search-bar input {
   padding: 10px;
-
-  width: 90%;
+  border-radius: 5px;
+  width: 100%;
 }
 
 .spinner-container {
@@ -240,4 +246,10 @@ li.completed:hover .striked {
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.search-add-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

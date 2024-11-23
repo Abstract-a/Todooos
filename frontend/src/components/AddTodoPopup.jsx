@@ -38,17 +38,18 @@ function AddTodoPopup({ onAddTodo, show, onCancel }) {
     <div className="backdrop" onClick={onCancel}>
       <div className="confirm-popup" onClick={(e) => e.stopPropagation()}>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="title">title</label>
           <input
             type="text"
+            placeholder="title"
             id="title"
             name="title"
             value={title}
             required
             onChange={(e) => setTitle(e.target.value)}
           />
-          <label htmlFor="text">text</label>
+
           <textarea
+            placeholder="description"
             id="text"
             name="text"
             value={text}

@@ -1,4 +1,4 @@
-import TodosPage from './components/TodosPage';
+import TodosPage from './pages/TodosPage';
 function App() {
   return (
     <>

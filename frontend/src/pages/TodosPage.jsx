@@ -1,10 +1,9 @@
 import axios from 'axios';
-import Spinner from './Spinner';
+import Spinner from '../components/ui/Spinner.jsx';
 import { useState, useEffect } from 'react';
-import AddTodoPopup from './popups/AddTodoPopup';
-import SingleTodo from './SingleTodo';
-import AddIcon from '@mui/icons-material/Add';
-import SearchBar from './SearchBar.jsx';
+import AddTodoPopup from '../components/AddTodoPopup.jsx';
+import SingleTodo from '../components/SingleTodo.jsx';
+import SearchBar from '../components/ui/SearchBar.jsx';
 
 function TodosPage() {
   const [loading, setLoading] = useState(false);
@@ -66,10 +65,15 @@ function TodosPage() {
         <Spinner />
       ) : (
         <div>
-          <button className="add-btn" onClick={() => setShowAddTodoPopup(true)}>
-            <AddIcon />
-          </button>
-          <SearchBar onSearch={handleSearch} />
+          <div className="search-add-container">
+            <SearchBar onSearch={handleSearch} />
+            <button
+              className="add-btn"
+              onClick={() => setShowAddTodoPopup(true)}
+            >
+              Add
+            </button>
+          </div>
           <ul>
             {filteredTodos.map((todo) => (
               <SingleTodo
