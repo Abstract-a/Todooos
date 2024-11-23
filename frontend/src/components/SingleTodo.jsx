@@ -7,7 +7,8 @@ import ShowTodoPopup from './ShowTodoPopup';
 import { formatTime } from '../utils/dateHelper';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import CheckIcon from '@mui/icons-material/Check';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
 function SingleTodo({
@@ -18,11 +19,13 @@ function SingleTodo({
   createdAt,
   updatedAt,
   onUpdateTodo,
+  completed,
+  // onCompleted,
 }) {
   const [showConfirmDeletePopup, setShowConfirmDeletePopup] = useState(false);
   const [showConfirmUpdatePopup, setshowConfirmUpdatePopup] = useState(false);
   const [showTodoPupup, setShowTodoPupup] = useState(false);
-  const [completed, setCompleted] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(completed);
   const [updateDate, setUpdateDate] = useState(updatedAt);
 
   const handleDelete = async () => {
@@ -57,14 +60,16 @@ function SingleTodo({
         {
           title,
           text,
-          completed: !completed,
+          completed: !isCompleted,
         }
       );
+      console.log(response.data);
       setUpdateDate(response.data.updatedAt);
     } catch (error) {
       console.log(error);
     }
-    setCompleted(!completed);
+    setIsCompleted(!isCompleted);
+    // onCompleted();
   };
 
   return (
@@ -72,22 +77,27 @@ function SingleTodo({
       <li className="todo-container-li">
         <div className="todo-container-left">
           <button onClick={handleCompleted}>
-            <CheckIcon />
+            {isCompleted ? <CheckCircleIcon /> : <RadioButtonUncheckedIcon />}
           </button>
+          <div className="todo-container-left-text">
+            <h3
+              className={isCompleted ? 'striked' : ''}
+              onClick={() => {
+                setShowTodoPupup(true);
+              }}
+            >
+              {title}
+            </h3>
+            <p
+              style={isCompleted ? {} : { display: 'none' }}
+            >{`completion date : ${formatTime(updateDate)}`}</p>
+          </div>
+        </div>
+        <div className="todo-container-center"></div>
+        <div className="todo-container-right">
           <button onClick={() => setShowTodoPupup(true)}>
             <VisibilityIcon />
           </button>
-        </div>
-        <div className="todo-container-center">
-          <h3 className={completed ? 'striked' : ''}>{title}</h3>
-          {/* <p>{text}</p> */}
-          {/* <p>{formatTime(createdAt)}</p> */}
-          {/* <p>update date : {formatTime(updateDate)}</p> */}
-          <p
-            style={completed ? {} : { display: 'none' }}
-          >{`completion date : ${formatTime(updateDate)}`}</p>
-        </div>
-        <div className="todo-container-right">
           <button onClick={() => setshowConfirmUpdatePopup(true)}>
             <ModeEditIcon />
           </button>

@@ -183,13 +183,17 @@ li.completed:hover .striked {
 
 .todo-container-left {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  /* flex-direction: column; */
+  gap: 10px;
 }
 .todo-container-right {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   gap: 5px;
+}
+.todo-container-left h3 {
+  text-align: left;
+  cursor: pointer;
 }
 
 .delete-popup {
