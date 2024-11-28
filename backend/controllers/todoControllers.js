@@ -23,7 +23,7 @@ const updateTodo = AsyncHandler(async (req, res) => {
 
   if (!todo) {
     res.status(400);
-    res.json({ error: 'User not found' });
+    res.json({ error: 'Todo not found' });
   }
 
   const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body, {

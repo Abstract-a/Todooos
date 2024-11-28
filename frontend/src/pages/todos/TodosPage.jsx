@@ -1,9 +1,9 @@
 import axios from 'axios';
-import Spinner from '../components/ui/Spinner.jsx';
+import Spinner from '../../components/ui/Spinner.jsx';
 import { useState, useEffect } from 'react';
-import AddTodoPopup from '../components/AddTodoPopup.jsx';
-import SingleTodo from '../components/SingleTodo.jsx';
-import SearchBar from '../components/ui/SearchBar.jsx';
+import AddTodoPopup from '../../components/AddTodoPopup.jsx';
+import SingleTodo from '../../components/SingleTodo.jsx';
+import SearchBar from '../../components/ui/SearchBar.jsx';
 
 function TodosPage() {
   const [loading, setLoading] = useState(false);
@@ -43,7 +43,7 @@ function TodosPage() {
   };
 
   const handleUpdateTodo = (updatedTodo) => {
-    setTodos((prevTodos) =>
+    setFilteredTodos((prevTodos) =>
       prevTodos.map((todo) =>
         todo._id === updatedTodo._id ? updatedTodo : todo
       )
