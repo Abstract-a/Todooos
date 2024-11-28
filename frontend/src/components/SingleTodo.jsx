@@ -13,14 +13,14 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 
 function SingleTodo({
   onDeleteTodo,
-  id,
+  onUpdateTodo,
+  onCompleted,
+  _id,
   title,
   text,
   createdAt,
   updatedAt,
-  onUpdateTodo,
   completed,
-  // onCompleted,
 }) {
   const [showConfirmDeletePopup, setShowConfirmDeletePopup] = useState(false);
   const [showConfirmUpdatePopup, setshowConfirmUpdatePopup] = useState(false);
@@ -31,7 +31,7 @@ function SingleTodo({
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/todos/${id}`
+        `http://localhost:5000/api/todos/${_id}`
       );
       onDeleteTodo(response.data.id);
     } catch (error) {
@@ -56,20 +56,20 @@ function SingleTodo({
   const handleCompleted = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/todos/${id}`,
+        `http://localhost:5000/api/todos/${_id}`,
         {
           title,
           text,
           completed: !isCompleted,
         }
       );
-      console.log(response.data);
+
       setUpdateDate(response.data.updatedAt);
+      setIsCompleted((prev) => !prev);
+      onCompleted(_id, !isCompleted);
     } catch (error) {
       console.log(error);
     }
-    setIsCompleted(!isCompleted);
-    // onCompleted();
   };
 
   return (
@@ -116,7 +116,7 @@ function SingleTodo({
         onCancel={handleCancelUpdate}
         initialTitle={title}
         initialText={text}
-        id={id}
+        id={_id}
         onUpdateTodo={onUpdateTodo}
       />
       <ShowTodoPopup

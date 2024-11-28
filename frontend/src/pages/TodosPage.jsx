@@ -11,7 +11,7 @@ function TodosPage() {
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [showAddTodoPopup, setShowAddTodoPopup] = useState(false);
 
-  useEffect(() => {
+  function getTodos() {
     setLoading(true);
     axios
       .get('http://localhost:5000/api/todos')
@@ -19,12 +19,15 @@ function TodosPage() {
         setTodos(response.data);
         setFilteredTodos(response.data);
         setLoading(false);
-        console.log(response.data);
       })
       .catch((error) => {
         setLoading(false);
         console.log(error);
       });
+  }
+
+  useEffect(() => {
+    getTodos();
   }, []);
 
   const handleAddTodo = (newTodo) => {
@@ -52,9 +55,23 @@ function TodosPage() {
       )
     );
   };
-  // const handleCompleted = () => {
-  //   setTodos((todo) => [...todo]);
-  // };
+
+  function sortTodos(todos) {
+    return todos.sort((a, b) => {
+      if (a.completed === b.completed) {
+        return 0;
+      }
+      return a.completed ? 1 : -1;
+    });
+  }
+
+  const handleCompleted = (id, newCompletedStatus) => {
+    setFilteredTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo._id === id ? { ...todo, completed: newCompletedStatus } : todo
+      )
+    );
+  };
 
   const handleSearch = (searchTerm) => {
     const lowercasedTerm = searchTerm.toLowerCase();
@@ -79,27 +96,15 @@ function TodosPage() {
             </button>
           </div>
           <ul>
-            {filteredTodos
-              .sort((a, b) => {
-                if (a.completed === b.completed) {
-                  return 0;
-                }
-                return a.completed ? 1 : -1;
-              })
-              .map((todo) => (
-                <SingleTodo
-                  key={todo._id}
-                  id={todo._id}
-                  title={todo.title}
-                  text={todo.text}
-                  createdAt={todo.createdAt}
-                  updatedAt={todo.updatedAt}
-                  completed={todo.completed}
-                  onDeleteTodo={handleDeleteTodo}
-                  onUpdateTodo={handleUpdateTodo}
-                  // onCompleted={handleCompleted}
-                />
-              ))}
+            {sortTodos(filteredTodos).map((todo) => (
+              <SingleTodo
+                key={todo._id}
+                {...todo}
+                onDeleteTodo={handleDeleteTodo}
+                onUpdateTodo={handleUpdateTodo}
+                onCompleted={handleCompleted}
+              />
+            ))}
           </ul>
           <AddTodoPopup
             onAddTodo={handleAddTodo}
