@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import axios from 'axios';
 import { useState } from 'react';
-import DeleteTodoPopup from './DeleteTodoPopup';
-import UpdateTodoPopup from './UpdateTodoPopup';
-import ShowTodoPopup from './ShowTodoPopup';
+import DeleteTodoPopup from '../popups/DeleteTodoPopup';
+import UpdateTodoPopup from '../popups/UpdateTodoPopup';
+import ShowTodoPopup from '../popups/ShowTodoPopup';
 import { formatTime } from '../utils/dateHelper';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
