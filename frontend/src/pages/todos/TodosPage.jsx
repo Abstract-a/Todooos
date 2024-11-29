@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Spinner from '../../components/ui/Spinner.jsx';
 import { useState, useEffect } from 'react';
-import AddTodoPopup from '../../popups/AddTodoPopup.jsx';
+import AddTodoPopup from '../todos/popups/AddTodoPopup.jsx';
 import SingleTodo from '../../components/SingleTodo.jsx';
 import SearchBar from '../../components/ui/SearchBar.jsx';
 

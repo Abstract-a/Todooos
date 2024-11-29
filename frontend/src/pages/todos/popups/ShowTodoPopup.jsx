@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { formatTime } from '../utils/dateHelper';
+import { formatTime } from '../../../utils/dateHelper.js';
 import ClearIcon from '@mui/icons-material/Clear';
-
+import Comments from '../../comments/Comments.jsx';
 function ShowTodoPopup({
   createdAt,
   updatedAt,
@@ -9,10 +9,12 @@ function ShowTodoPopup({
   initialText,
   onCancel,
   show,
+  id,
 }) {
   if (!show) return null;
+
   return (
-    <div className="backdrop" onClick={onCancel}>
+    <div className="backdrop">
       <div className="confirm-popup show-popup">
         <button onClick={onCancel}>
           <ClearIcon />
@@ -32,6 +34,7 @@ function ShowTodoPopup({
           </div>
         </div>
       </div>
+      <Comments id={id} />
     </div>
   );
 }

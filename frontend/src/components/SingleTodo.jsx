@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import axios from 'axios';
 import { useState } from 'react';
-import DeleteTodoPopup from '../popups/DeleteTodoPopup';
-import UpdateTodoPopup from '../popups/UpdateTodoPopup';
-import ShowTodoPopup from '../popups/ShowTodoPopup';
+import DeleteTodoPopup from '../pages/todos/popups/DeleteTodoPopup';
+import UpdateTodoPopup from '../pages/todos/popups/UpdateTodoPopup';
+import ShowTodoPopup from '../pages/todos/popups/ShowTodoPopup';
 import { formatTime } from '../utils/dateHelper';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
@@ -110,6 +110,7 @@ function SingleTodo({
         show={showConfirmDeletePopup}
         onConfirm={handleDelete}
         onCancel={handleCancelDelete}
+        id={_id}
       />
       <UpdateTodoPopup
         show={showConfirmUpdatePopup}
@@ -121,6 +122,7 @@ function SingleTodo({
       />
       <ShowTodoPopup
         show={showTodoPupup}
+        id={_id}
         onCancel={handleCancelShow}
         initialText={text}
         initialTitle={title}

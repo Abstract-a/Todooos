@@ -2,9 +2,7 @@ import AsyncHandler from 'express-async-handler';
 import { Comments } from '../models/todoModels.js';
 
 const getComments = AsyncHandler(async (req, res) => {
-  console.log('hi');
   const { todoId } = req.params;
-  console.log(todoId);
   const comments = await Comments.find({ todo: todoId });
   res.status(200).json(comments);
 });
@@ -16,9 +14,6 @@ const setComment = AsyncHandler(async (req, res) => {
   }
 
   const newComment = await Comments.create({ todo, comment });
-  console.log('Request Body:', req.body);
-  console.log('Todo ID:', todo);
-  console.log('Comment:', comment);
 
   res.status(201).json(newComment);
 });
