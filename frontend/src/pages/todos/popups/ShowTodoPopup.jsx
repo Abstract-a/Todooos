@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { formatTime } from '../../../utils/dateHelper.js';
 import ClearIcon from '@mui/icons-material/Clear';
-import Comments from '../../comments/Comments.jsx';
+import CommentsPage from '../../comments/CommentsPage.jsx';
 function ShowTodoPopup({
   createdAt,
   updatedAt,
@@ -34,7 +34,7 @@ function ShowTodoPopup({
           </div>
         </div>
       </div>
-      <Comments id={id} />
+      <CommentsPage id={id} />
     </div>
   );
 }

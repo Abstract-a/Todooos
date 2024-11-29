@@ -2,10 +2,10 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Spinner from '../../components/ui/Spinner';
-import SingleComment from './SingleComment';
+import SingleComment from '../../components/SingleComment';
 import AddComment from '../todos/popups/AddComment';
 
-function Comments({ id }) {
+function CommentsPage({ id }) {
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
   useEffect(() => {
@@ -27,6 +27,9 @@ function Comments({ id }) {
     setComments((prev) => [...prev, newComment]);
   };
 
+  const handleDeleteComment = (id) => {
+    setComments((prev) => prev.filter((comment) => comment._id != id));
+  };
   return (
     <div className="container">
       {loading ? (
@@ -35,7 +38,11 @@ function Comments({ id }) {
         <div>
           <div>
             {comments.map((comment) => (
-              <SingleComment comment={comment} key={comment._id} />
+              <SingleComment
+                comment={comment}
+                key={comment._id}
+                onDeleteComment={handleDeleteComment}
+              />
             ))}
           </div>
           <AddComment onAddComment={handleAddComment} id={id} />
@@ -45,4 +52,4 @@ function Comments({ id }) {
   );
 }
 
-export default Comments;
+export default CommentsPage;
