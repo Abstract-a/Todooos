@@ -3,10 +3,11 @@
 import { useState } from 'react';
 import axios from 'axios';
 import DeleteComment from '../pages/todos/popups/DeleteComment';
+import { formatTime } from '../utils/dateHelper';
 
 function SingleComment({ comment, onDeleteComment }) {
   const [showConfirmDeletePopup, setShowConfirmDeletePopup] = useState(false);
-
+  console.log(comment);
   const handleDelete = async () => {
     const id = comment._id;
     try {
@@ -30,6 +31,7 @@ function SingleComment({ comment, onDeleteComment }) {
   return (
     <div>
       <h3>{comment.comment}</h3>
+      <p>{formatTime(comment.createdAt)}</p>
       <button onClick={() => setShowConfirmDeletePopup(true)}>Delete</button>
       <DeleteComment
         onDeleteComment={onDeleteComment}

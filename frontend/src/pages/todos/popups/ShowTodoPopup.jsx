@@ -5,6 +5,7 @@ import CommentsPage from '../../comments/CommentsPage.jsx';
 function ShowTodoPopup({
   createdAt,
   updatedAt,
+  completedAt,
   initialTitle,
   initialText,
   onCancel,
@@ -31,6 +32,10 @@ function ShowTodoPopup({
           <div className="date-right">
             <p>latest update </p>
             <p>{formatTime(updatedAt)}</p>
+          </div>
+          <div className="date-right">
+            <p>complete at </p>
+            <p>{formatTime(completedAt)}</p>
           </div>
         </div>
       </div>

@@ -88,9 +88,6 @@ function SingleTodo({
             >
               {title}
             </h3>
-            <p
-              style={isCompleted ? {} : { display: 'none' }}
-            >{`completion date : ${formatTime(updateDate)}`}</p>
           </div>
         </div>
         <div className="todo-container-center"></div>
@@ -98,7 +95,10 @@ function SingleTodo({
           <button onClick={() => setShowTodoPupup(true)}>
             <VisibilityIcon />
           </button>
-          <button onClick={() => setshowConfirmUpdatePopup(true)}>
+          <button
+            onClick={() => setshowConfirmUpdatePopup(true)}
+            disabled={isCompleted}
+          >
             <ModeEditIcon />
           </button>
           <button onClick={() => setShowConfirmDeletePopup(true)}>
@@ -128,6 +128,7 @@ function SingleTodo({
         initialTitle={title}
         createdAt={createdAt}
         updatedAt={updatedAt}
+        completedAt={updateDate}
       />
     </div>
   );
