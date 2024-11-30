@@ -20,9 +20,11 @@ const setComment = AsyncHandler(async (req, res) => {
 
 const updateComment = AsyncHandler(async (req, res) => {
   const comment = await Comments.findById(req.params.id);
+
   if (!comment) {
     res.status(400).json({ error: 'Comment not found' });
   }
+
   const updatedComment = await Comments.findByIdAndUpdate(
     req.params.id,
     req.body,

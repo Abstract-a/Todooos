@@ -27,6 +27,14 @@ function CommentsPage({ id }) {
     setComments((prev) => [...prev, newComment]);
   };
 
+  const handleUpdateComment = (updatedComment) => {
+    setComments((prevComments) =>
+      prevComments.map((comment) =>
+        comment._id === updatedComment._id ? updatedComment : comment
+      )
+    );
+  };
+
   const handleDeleteComment = (id) => {
     setComments((prev) => prev.filter((comment) => comment._id != id));
   };
@@ -42,6 +50,7 @@ function CommentsPage({ id }) {
                 comment={comment}
                 key={comment._id}
                 onDeleteComment={handleDeleteComment}
+                onUpdateComment={handleUpdateComment}
               />
             ))}
           </div>
