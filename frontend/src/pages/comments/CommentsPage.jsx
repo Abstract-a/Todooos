@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import Spinner from '../../components/ui/Spinner';
-import SingleComment from '../../components/SingleComment';
-import AddComment from '../todos/popups/AddComment';
+import axios from "axios";
+import { useState, useEffect } from "react";
+import Spinner from "../../components/ui/Spinner";
+import SingleComment from "../../components/SingleComment";
+import AddComment from "../todos/popups/AddComment";
 
 function CommentsPage({ id }) {
   const [loading, setLoading] = useState(false);
@@ -30,8 +30,8 @@ function CommentsPage({ id }) {
   const handleUpdateComment = (updatedComment) => {
     setComments((prevComments) =>
       prevComments.map((comment) =>
-        comment._id === updatedComment._id ? updatedComment : comment
-      )
+        comment._id === updatedComment._id ? updatedComment : comment,
+      ),
     );
   };
 
@@ -39,7 +39,8 @@ function CommentsPage({ id }) {
     setComments((prev) => prev.filter((comment) => comment._id != id));
   };
   return (
-    <div className="container">
+    // <div className="h-[560px] w-[500px] bg-gray-200">
+    <div>
       {loading ? (
         <Spinner />
       ) : (
