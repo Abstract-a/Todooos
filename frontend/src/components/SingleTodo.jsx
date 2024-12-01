@@ -4,7 +4,6 @@ import { useState } from "react";
 import DeleteTodoPopup from "../pages/todos/popups/DeleteTodoPopup";
 import UpdateTodoPopup from "../pages/todos/popups/UpdateTodoPopup";
 import ShowTodoPopup from "../pages/todos/popups/ShowTodoPopup";
-import { formatTime } from "../utils/dateHelper";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -73,15 +72,18 @@ function SingleTodo({
   };
 
   return (
-    <div className="todo-container">
-      <li className="todo-container-li mb-3 flex items-center justify-between rounded-md bg-slate-100 p-4 shadow-md">
-        <div className="todo-container-left">
-          <button onClick={handleCompleted}>
+    <div className="m-auto">
+      <li className="mb-3 flex items-center justify-between rounded-md bg-slate-100 p-4 shadow-md">
+        <div className="flex gap-3">
+          <button
+            onClick={handleCompleted}
+            className="ml-3 cursor-pointer border-none bg-none text-base transition-colors duration-300 ease-in-out hover:text-green-500"
+          >
             {isCompleted ? <CheckCircleIcon /> : <RadioButtonUncheckedIcon />}
           </button>
           <div className="todo-container-left-text">
             <h3
-              className={isCompleted ? "striked" : ""}
+              className={`text-lg font-bold ${`${completed ? "italic text-gray-600 line-through opacity-70 transition-all duration-500 ease-in-out hover:text-gray-700 hover:opacity-100" : ""}`}`}
               onClick={() => {
                 setShowTodoPupup(true);
               }}
@@ -92,16 +94,23 @@ function SingleTodo({
         </div>
         <div className="todo-container-center"></div>
         <div className="todo-container-right">
-          <button onClick={() => setShowTodoPupup(true)}>
+          <button
+            onClick={() => setShowTodoPupup(true)}
+            className="ml-3 cursor-pointer border-none bg-none text-base transition-colors duration-300 ease-in-out hover:text-green-500"
+          >
             <VisibilityIcon />
           </button>
           <button
             onClick={() => setshowConfirmUpdatePopup(true)}
             disabled={isCompleted}
+            className="ml-3 cursor-pointer border-none bg-none text-base transition-colors duration-300 ease-in-out hover:text-green-500"
           >
             <ModeEditIcon />
           </button>
-          <button onClick={() => setShowConfirmDeletePopup(true)}>
+          <button
+            onClick={() => setShowConfirmDeletePopup(true)}
+            className="ml-3 cursor-pointer border-none bg-none text-base transition-colors duration-300 ease-in-out hover:text-red-600"
+          >
             <DeleteForeverIcon />
           </button>
         </div>

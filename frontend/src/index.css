@@ -63,6 +63,18 @@ li {
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+li button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+li button:hover {
+  color: #ff5722;
+}
 */
 
 li.completed {
@@ -77,18 +89,6 @@ li p {
 }
 
 /* Buttons on Todos */
-li button {
-  border: none;
-  background: none;
-  cursor: pointer;
-  margin-left: 10px;
-  font-size: 16px;
-  transition: color 0.3s ease;
-}
-
-li button:hover {
-  color: #ff5722;
-}
 
 button.complete-btn:hover {
   color: #4caf50;
