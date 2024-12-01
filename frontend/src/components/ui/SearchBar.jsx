@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+import { useState } from "react";
 
 function SearchBar({ onSearch }) {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -11,8 +11,9 @@ function SearchBar({ onSearch }) {
   };
 
   return (
-    <div className="search-bar">
+    <div className="w-[400px]">
       <input
+        className="w-full rounded-md p-3"
         type="text"
         value={searchTerm}
         onChange={handleInputChange}

@@ -81,9 +81,9 @@ function SingleTodo({
           >
             {isCompleted ? <CheckCircleIcon /> : <RadioButtonUncheckedIcon />}
           </button>
-          <div className="todo-container-left-text">
+          <div className="flex gap-3">
             <h3
-              className={`text-lg font-bold ${`${completed ? "italic text-gray-600 line-through opacity-70 transition-all duration-500 ease-in-out hover:text-gray-700 hover:opacity-100" : ""}`}`}
+              className={`cursor-pointer text-left text-lg font-bold ${`${completed ? "italic text-gray-600 line-through opacity-70 transition-all duration-500 ease-in-out hover:text-gray-700 hover:opacity-100" : ""}`}`}
               onClick={() => {
                 setShowTodoPupup(true);
               }}
@@ -92,8 +92,8 @@ function SingleTodo({
             </h3>
           </div>
         </div>
-        <div className="todo-container-center"></div>
-        <div className="todo-container-right">
+        {/* <div className="todo-container-center"></div> */}
+        <div className="flex gap-1">
           <button
             onClick={() => setShowTodoPupup(true)}
             className="ml-3 cursor-pointer border-none bg-none text-base transition-colors duration-300 ease-in-out hover:text-green-500"

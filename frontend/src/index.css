@@ -18,6 +18,15 @@ body {
   height: 100vh;
 }
 
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
 /* Main Container 
 .container {
   background-color: #ececec;
@@ -69,37 +78,29 @@ li button {
   cursor: pointer;
   margin-left: 10px;
   font-size: 16px;
+  li.completed {
+    text-decoration: line-through;
+    color: #777;
+  }
+  
+  li p {
+    font-size: 12px;
+    color: #888;
+  }
   transition: color 0.3s ease;
 }
 
-li button:hover {
-  color: #ff5722;
-}
-*/
-
-li.completed {
-  text-decoration: line-through;
-  color: #777;
-}
-
-/* Todo Dates */
-li p {
-  font-size: 12px;
-  color: #888;
-}
-
-/* Buttons on Todos */
 
 button.complete-btn:hover {
   color: #4caf50;
 }
-
-/* Popups */
+li button:hover {
+  color: #ff5722;
+}
 .confirm-popup {
   position: fixed;
   background-color: #ececec;
-  /* margin-bottom: 50px; */
-  top: 50%;
+   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
@@ -108,64 +109,57 @@ button.complete-btn:hover {
   z-index: 1000;
   width: 90%;
   max-width: 400px;
-}
+  }
+  
+  
+  .confirm-popup button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .confirm-popup button:first-of-type {
+    background-color: #ff5722;
+    color: white;
+  }
+  
+  .confirm-popup button:last-of-type {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .confirm-popup button:hover {
+    opacity: 0.9;
+  }
+  */
 
-.confirm-popup textarea,
+/* .confirm-popup textarea,
 .confirm-popup input {
   width: 100%;
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-}
-textarea {
+} */
+/* textarea {
   resize: none;
   overflow: auto;
   min-height: 300px;
-}
+} */
 
-textarea,
+/* textarea,
 input {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
   padding: 0.5rem;
   border: 1px solid #ccc;
-}
+} */
 
-.confirm-popup button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  margin-right: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.confirm-popup button:first-of-type {
-  background-color: #ff5722;
-  color: white;
-}
-
-.confirm-popup button:last-of-type {
-  background-color: #4caf50;
-  color: white;
-}
-
-.confirm-popup button:hover {
-  opacity: 0.9;
-}
-
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-}
-
+/* 
 .striked {
   text-decoration: line-through;
   color: #888;
@@ -174,37 +168,36 @@ input {
   transition:
     opacity 0.3s ease,
     color 0.3s ease;
-}
+} */
 
-li.completed:hover .striked {
+/* li.completed:hover .striked {
   opacity: 1;
   color: #555;
-}
+} */
 
-.todo-container {
+/* .todo-container {
   margin: auto;
-}
+} */
 
-.todo-container-left {
+/* .todo-container-left {
   display: flex;
   /* flex-direction: column; */
-  gap: 10px;
-}
+/* gap: 10px; */
+/* } 
 .todo-container-right {
   display: flex;
-  /* flex-direction: column; */
   gap: 5px;
 }
-.todo-container-left h3 {
-  text-align: left;
-  cursor: pointer;
-}
-
 .delete-popup {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+.todo-container-left h3 {
+  text-align: left;
+  flex-direction: column;
+  cursor: pointer;
+} */
 
 .show-popup {
   display: flex;
@@ -239,7 +232,7 @@ li.completed:hover .striked {
   flex-direction: column;
 }
 
-.search-bar {
+/* .search-bar {
   width: 400px;
 }
 
@@ -247,17 +240,17 @@ li.completed:hover .striked {
   padding: 10px;
   border-radius: 5px;
   width: 100%;
-}
+} */
 
-.spinner-container {
+/* .spinner-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
+} */
 
-.search-add-container {
+/* .search-add-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
+} */

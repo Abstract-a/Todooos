@@ -86,10 +86,10 @@ function TodosPage() {
         <Spinner />
       ) : (
         <div>
-          <div className="search-add-container">
+          <div className="flex items-center justify-between pb-4">
             <SearchBar onSearch={handleSearch} />
             <button
-              className="cursor-pointer rounded-md border-none bg-green-500 px-5 py-2 text-base text-white transition-all duration-500 ease-in-out hover:bg-green-600"
+              className="cursor-pointer rounded-md border-none bg-green-500 px-6 py-3 text-base text-white transition-all duration-500 ease-in-out hover:bg-green-600"
               onClick={() => setShowAddTodoPopup(true)}
             >
               Add

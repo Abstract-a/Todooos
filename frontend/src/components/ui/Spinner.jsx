@@ -1,8 +1,8 @@
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
 
 function Spinner() {
   return (
-    <div className="spinner-container">
+    <div className="flex h-[100vh] items-center justify-center">
       <CircularProgress />
     </div>
   );
