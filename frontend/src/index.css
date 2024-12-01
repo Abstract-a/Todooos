@@ -1,4 +1,6 @@
-/* General Reset */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +9,7 @@
 
 /* Body Styling */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   background-color: #d6d6d6;
   color: #333;
   display: flex;
@@ -16,7 +18,7 @@ body {
   height: 100vh;
 }
 
-/* Main Container */
+/* Main Container 
 .container {
   background-color: #ececec;
   padding: 20px;
@@ -28,8 +30,9 @@ body {
   overflow: auto;
   text-align: center;
 }
+  */
 
-/* Add Button */
+/* Add Button 
 button.add-btn {
   background-color: #4caf50;
   color: white;
@@ -44,9 +47,7 @@ button.add-btn {
 button.add-btn:hover {
   background-color: #45a049;
 }
-
-/* Todo List */
-ul {
+ ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -62,6 +63,7 @@ li {
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+*/
 
 li.completed {
   text-decoration: line-through;
@@ -169,7 +171,9 @@ input {
   color: #888;
   font-style: italic;
   opacity: 0.7;
-  transition: opacity 0.3s ease, color 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    color 0.3s ease;
 }
 
 li.completed:hover .striked {

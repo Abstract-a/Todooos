@@ -1,9 +1,9 @@
-import axios from 'axios';
-import Spinner from '../../components/ui/Spinner.jsx';
-import { useState, useEffect } from 'react';
-import AddTodoPopup from '../todos/popups/AddTodoPopup.jsx';
-import SingleTodo from '../../components/SingleTodo.jsx';
-import SearchBar from '../../components/ui/SearchBar.jsx';
+import axios from "axios";
+import Spinner from "../../components/ui/Spinner.jsx";
+import { useState, useEffect } from "react";
+import AddTodoPopup from "../todos/popups/AddTodoPopup.jsx";
+import SingleTodo from "../../components/SingleTodo.jsx";
+import SearchBar from "../../components/ui/SearchBar.jsx";
 
 function TodosPage() {
   const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ function TodosPage() {
   function getTodos() {
     setLoading(true);
     axios
-      .get('http://localhost:5000/api/todos')
+      .get("http://localhost:5000/api/todos")
       .then((response) => {
         setTodos(response.data);
         setFilteredTodos(response.data);
@@ -38,21 +38,21 @@ function TodosPage() {
   const handleDeleteTodo = (id) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
     setFilteredTodos((prevTodos) =>
-      prevTodos.filter((todo) => todo._id !== id)
+      prevTodos.filter((todo) => todo._id !== id),
     );
   };
 
   const handleUpdateTodo = (updatedTodo) => {
     setFilteredTodos((prevTodos) =>
       prevTodos.map((todo) =>
-        todo._id === updatedTodo._id ? updatedTodo : todo
-      )
+        todo._id === updatedTodo._id ? updatedTodo : todo,
+      ),
     );
 
     setFilteredTodos((prevTodos) =>
       prevTodos.map((todo) =>
-        todo._id === updatedTodo._id ? updatedTodo : todo
-      )
+        todo._id === updatedTodo._id ? updatedTodo : todo,
+      ),
     );
   };
 
@@ -68,20 +68,20 @@ function TodosPage() {
   const handleCompleted = (id, newCompletedStatus) => {
     setFilteredTodos((prevTodos) =>
       prevTodos.map((todo) =>
-        todo._id === id ? { ...todo, completed: newCompletedStatus } : todo
-      )
+        todo._id === id ? { ...todo, completed: newCompletedStatus } : todo,
+      ),
     );
   };
 
   const handleSearch = (searchTerm) => {
     const lowercasedTerm = searchTerm.toLowerCase();
     setFilteredTodos(
-      todos.filter((todo) => todo.title.toLowerCase().includes(lowercasedTerm))
+      todos.filter((todo) => todo.title.toLowerCase().includes(lowercasedTerm)),
     );
   };
 
   return (
-    <div className="container">
+    <div className="h-[500px] w-[600px] max-w-[90%] overflow-auto rounded-xl bg-[#ececec] p-5 text-center shadow-md">
       {loading ? (
         <Spinner />
       ) : (
@@ -89,13 +89,13 @@ function TodosPage() {
           <div className="search-add-container">
             <SearchBar onSearch={handleSearch} />
             <button
-              className="add-btn"
+              className="cursor-pointer rounded-md border-none bg-green-500 px-5 py-2 text-base text-white transition-all duration-500 ease-in-out hover:bg-green-600"
               onClick={() => setShowAddTodoPopup(true)}
             >
               Add
             </button>
           </div>
-          <ul>
+          <ul className="m-0 list-none p-0">
             {sortTodos(filteredTodos).map((todo) => (
               <SingleTodo
                 key={todo._id}

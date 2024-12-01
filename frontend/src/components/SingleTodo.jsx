@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
-import axios from 'axios';
-import { useState } from 'react';
-import DeleteTodoPopup from '../pages/todos/popups/DeleteTodoPopup';
-import UpdateTodoPopup from '../pages/todos/popups/UpdateTodoPopup';
-import ShowTodoPopup from '../pages/todos/popups/ShowTodoPopup';
-import { formatTime } from '../utils/dateHelper';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import axios from "axios";
+import { useState } from "react";
+import DeleteTodoPopup from "../pages/todos/popups/DeleteTodoPopup";
+import UpdateTodoPopup from "../pages/todos/popups/UpdateTodoPopup";
+import ShowTodoPopup from "../pages/todos/popups/ShowTodoPopup";
+import { formatTime } from "../utils/dateHelper";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 function SingleTodo({
   onDeleteTodo,
@@ -31,7 +31,7 @@ function SingleTodo({
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/todos/${_id}`
+        `http://localhost:5000/api/todos/${_id}`,
       );
       onDeleteTodo(response.data.id);
     } catch (error) {
@@ -61,7 +61,7 @@ function SingleTodo({
           title,
           text,
           completed: !isCompleted,
-        }
+        },
       );
 
       setUpdateDate(response.data.updatedAt);
@@ -74,14 +74,14 @@ function SingleTodo({
 
   return (
     <div className="todo-container">
-      <li className="todo-container-li">
+      <li className="todo-container-li mb-3 flex items-center justify-between rounded-md bg-slate-100 p-4 shadow-md">
         <div className="todo-container-left">
           <button onClick={handleCompleted}>
             {isCompleted ? <CheckCircleIcon /> : <RadioButtonUncheckedIcon />}
           </button>
           <div className="todo-container-left-text">
             <h3
-              className={isCompleted ? 'striked' : ''}
+              className={isCompleted ? "striked" : ""}
               onClick={() => {
                 setShowTodoPupup(true);
               }}
