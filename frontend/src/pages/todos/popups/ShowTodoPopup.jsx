@@ -28,9 +28,9 @@ function ShowTodoPopup({
       >
         <button
           onClick={onCancel}
-          className="absolute left-0 top-0 mr-3 cursor-pointer overflow-hidden rounded-lg border-none bg-red-500 px-6 py-3 text-white transition-all duration-500 ease-in-out hover:bg-red-600 hover:opacity-90"
+          className="absolute left-0 top-0 mr-3 cursor-pointer overflow-hidden rounded-lg border-none p-3 text-red-500 transition-all duration-500 ease-in-out hover:bg-gray-300 hover:text-red-700"
         >
-          <ClearIcon />
+          <ClearIcon className="text-[50px]" />
         </button>
 
         <h3 className="my-4 text-xl font-bold">{initialTitle}</h3>
