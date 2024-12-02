@@ -81,7 +81,7 @@ function TodosPage() {
   };
 
   return (
-    <div className="h-[500px] w-[600px] overflow-auto rounded-xl bg-[#ececec] p-5 text-center shadow-md">
+    <div className="z-[900] h-[500px] w-[600px] overflow-auto rounded-xl bg-[#ececec] p-5 text-center shadow-md">
       {loading ? (
         <Spinner />
       ) : (

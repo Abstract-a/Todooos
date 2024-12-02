@@ -18,8 +18,14 @@ function ShowTodoPopup({
   if (!show) return null;
 
   return (
-    <div className="relative flex">
-      <div className="fixed inset-0 left-1/2 top-1/2 z-[1000] flex w-[90%] max-w-[500px] -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center gap-3 rounded-lg bg-gray-200 p-5 shadow-md">
+    <div
+      onClick={onCancel}
+      className="absolute inset-0 flex h-[100vh] w-full items-center justify-center bg-red-400"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative z-[1000] flex w-[90%] max-w-[500px] flex-col items-center justify-center gap-3 rounded-lg bg-gray-200 p-5 shadow-md"
+      >
         <button
           onClick={onCancel}
           className="absolute left-0 top-0 mr-3 cursor-pointer overflow-hidden rounded-lg border-none bg-red-500 px-6 py-3 text-white transition-all duration-500 ease-in-out hover:bg-red-600 hover:opacity-90"

@@ -39,8 +39,10 @@ function CommentsPage({ id }) {
     setComments((prev) => prev.filter((comment) => comment._id != id));
   };
   return (
-    // <div className="h-[560px] w-[500px] bg-gray-200">
-    <div>
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="z-[1000] h-[560px] w-[500px] bg-gray-200"
+    >
       {loading ? (
         <Spinner />
       ) : (
