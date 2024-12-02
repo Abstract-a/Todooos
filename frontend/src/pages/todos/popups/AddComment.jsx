@@ -1,29 +1,30 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import axios from "axios";
 function AddComment({ id, onAddComment }) {
   const [loading, setLoading] = useState(false);
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/comments', {
+      const response = await axios.post("http://localhost:5000/api/comments", {
         todo: id,
         comment: comment,
       });
       onAddComment(response.data);
       setLoading(false);
-      setComment('');
+      setComment("");
     } catch (error) {
       console.log(error);
       setLoading(false);
     }
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="flex w-full gap-4 border border-red-500">
+      <form onSubmit={handleSubmit} className="flex w-full">
         <input
+          className="m-3 w-[80%] rounded-md p-3"
           type="text"
           placeholder="Write a comment..."
           id="comment"
@@ -32,8 +33,12 @@ function AddComment({ id, onAddComment }) {
           required
           onChange={(e) => setComment(e.target.value)}
         />
-        <button type="submit" disabled={loading}>
-          {loading ? 'Saving...' : 'Save'}
+        <button
+          className="m-3 cursor-pointer rounded-lg border-none bg-green-500 px-6 text-white transition-all duration-500 ease-in-out hover:bg-green-600 hover:opacity-90"
+          type="submit"
+          disabled={loading}
+        >
+          {loading ? "Saving" : "Save"}
         </button>
       </form>
     </div>

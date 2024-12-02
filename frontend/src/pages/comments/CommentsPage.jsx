@@ -41,13 +41,13 @@ function CommentsPage({ id }) {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="z-[1000] h-[560px] w-[500px] bg-gray-200"
+      className="z-[1000] h-[560px] w-[500px] rounded-md bg-gray-200"
     >
       {loading ? (
         <Spinner />
       ) : (
-        <div>
-          <div>
+        <div className="flex h-full w-full flex-col items-start justify-center">
+          <div className="flex w-full flex-col items-start justify-start overflow-x-hidden overflow-y-scroll border-4 border-red-500">
             {comments.map((comment) => (
               <SingleComment
                 comment={comment}

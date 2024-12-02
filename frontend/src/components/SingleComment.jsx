@@ -1,22 +1,23 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
-import { useState } from 'react';
-import axios from 'axios';
-import DeleteComment from '../pages/todos/popups/DeleteComment';
-import { formatTime } from '../utils/dateHelper';
+import { useState, useRef } from "react";
+import axios from "axios";
+import DeleteComment from "../pages/todos/popups/DeleteComment";
+import { formatTime } from "../utils/dateHelper";
 
 function SingleComment({ comment, onDeleteComment, onUpdateComment }) {
   const [showConfirmDeletePopup, setShowConfirmDeletePopup] = useState(false);
   const [currentComment, setCurrentComment] = useState(comment.comment);
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [tempContent, setTempContent] = useState('');
+  const [tempContent, setTempContent] = useState("");
+  const formRef = useRef();
   const id = comment._id;
   const handleDelete = async () => {
     try {
       //console.log(comment._id);
       const response = await axios.delete(
-        `http://localhost:5000/api/comments/${id}`
+        `http://localhost:5000/api/comments/${id}`,
       );
       //console.log(response.data);
       onDeleteComment(response.data.id);
@@ -43,7 +44,7 @@ function SingleComment({ comment, onDeleteComment, onUpdateComment }) {
         `http://localhost:5000/api/comments/${id}`,
         {
           comment: currentComment,
-        }
+        },
       );
       //console.log(response.data);
       onUpdateComment(response.data);
@@ -60,27 +61,53 @@ function SingleComment({ comment, onDeleteComment, onUpdateComment }) {
     setCurrentComment(e.target.value);
   };
   return (
-    <div>
+    <div className="w-full">
       {isEditing ? (
-        <form onSubmit={handleSubmit}>
-          <input
+        <div className="mx-2 flex w-full rounded-sm bg-gray-400 p-3">
+          <textarea
+            className="h-20 w-full resize-none rounded-md border-2 border-gray-900 px-2 text-left text-[13px]"
             type="text"
             value={currentComment}
             onChange={handleEditChange}
           />
-          {isEditing && (
-            <button type="submit" disabled={loading}>
-              {loading ? 'saving...' : 'save'}
-            </button>
-          )}
-        </form>
+        </div>
       ) : (
-        <h3>{comment.comment}</h3>
+        <div className="mx-2 rounded-sm bg-gray-400 p-3">
+          <h3 className="break-words px-2 text-left text-[15px]">
+            {comment.comment}
+          </h3>
+        </div>
       )}
-      <p>{formatTime(comment.createdAt)}</p>
-      {!isEditing && <button onClick={handleEdit}>Edit</button>}
+      <div className="mx-2 flex items-center justify-start gap-1">
+        <p className="text-xs text-gray-500">{formatTime(comment.createdAt)}</p>
+        {"•"}
+        {isEditing && (
+          <button
+            type="button"
+            className="font-bold text-green-500 transition-all duration-300 ease-in-out hover:text-green-800 hover:underline"
+            disabled={loading}
+            onClick={handleSubmit}
+          >
+            {loading ? "saving..." : "save"}
+          </button>
+        )}
+        {!isEditing && (
+          <button
+            onClick={handleEdit}
+            className="text-gray-500 transition-all duration-300 ease-in-out hover:text-gray-800 hover:underline"
+          >
+            Edit
+          </button>
+        )}
 
-      <button onClick={() => setShowConfirmDeletePopup(true)}>Delete</button>
+        {"•"}
+        <button
+          className="text-gray-500 transition-all duration-300 ease-in-out hover:text-gray-800 hover:underline"
+          onClick={() => setShowConfirmDeletePopup(true)}
+        >
+          Delete
+        </button>
+      </div>
       <DeleteComment
         onDeleteComment={onDeleteComment}
         show={showConfirmDeletePopup}
