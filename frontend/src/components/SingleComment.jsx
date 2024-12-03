@@ -60,9 +60,9 @@ function SingleComment({ comment, onDeleteComment, onUpdateComment }) {
     setCurrentComment(e.target.value);
   };
   return (
-    <div className="w-full">
+    <div className="w-full pb-2">
       {isEditing ? (
-        <div className="mx-2 flex w-full rounded-sm bg-gray-400 p-3">
+        <div className="mx-2 flex w-full rounded-sm bg-gray-400 py-3">
           <textarea
             className="h-20 w-full resize-none rounded-md border-2 border-gray-900 px-2 text-left text-[13px]"
             type="text"
@@ -71,13 +71,13 @@ function SingleComment({ comment, onDeleteComment, onUpdateComment }) {
           />
         </div>
       ) : (
-        <div className="mx-2 rounded-sm bg-gray-400 p-3">
+        <div className="mx-4 rounded-lg bg-gray-400 p-3">
           <h3 className="break-words px-2 text-left text-[15px]">
             {comment.comment}
           </h3>
         </div>
       )}
-      <div className="mx-2 flex items-center justify-start gap-1">
+      <div className="mx-4 flex items-center justify-start gap-1">
         <p className="text-xs text-gray-500">{formatTime(comment.createdAt)}</p>
         {"•"}
         {isEditing && (
