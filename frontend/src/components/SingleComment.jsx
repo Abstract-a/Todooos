@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
-import { useState, useRef } from "react";
+import { useState } from "react";
 import axios from "axios";
 import DeleteComment from "../pages/todos/popups/DeleteComment";
 import { formatTime } from "../utils/dateHelper";
@@ -10,8 +10,7 @@ function SingleComment({ comment, onDeleteComment, onUpdateComment }) {
   const [currentComment, setCurrentComment] = useState(comment.comment);
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [tempContent, setTempContent] = useState("");
-  const formRef = useRef();
+  //const [tempContent, setTempContent] = useState("");
   const id = comment._id;
   const handleDelete = async () => {
     try {
