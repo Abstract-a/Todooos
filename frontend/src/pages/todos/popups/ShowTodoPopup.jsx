@@ -20,11 +20,11 @@ function ShowTodoPopup({
   return (
     <div
       onClick={onCancel}
-      className="flex h-screen w-screen flex-col items-center justify-center gap-4 md:absolute md:inset-0 md:h-[100vh] md:w-full md:flex-row"
+      className="flex flex-col items-center justify-center bg-green-500 md:absolute md:inset-0 md:h-screen md:w-screen md:flex-row md:gap-4"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative z-[1000] flex w-screen min-w-[384px] max-w-[500px] flex-col items-center justify-center gap-3 rounded-lg bg-gray-200 p-5 shadow-md md:max-h-[560px] md:w-[90%]"
+        className="z-[1000] flex w-screen min-w-[384px] max-w-[500px] flex-col items-center justify-center gap-3 rounded-lg bg-gray-200 p-5 shadow-md md:relative md:max-h-[560px] md:w-[90%]"
       >
         <button
           onClick={onCancel}
