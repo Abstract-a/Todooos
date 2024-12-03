@@ -93,7 +93,7 @@ function SingleTodo({
           </div>
         </div>
         {/* <div className="todo-container-center"></div> */}
-        <div className="flex gap-1">
+        <div className="flex flex-col gap-1 sm:flex-row">
           <button
             onClick={() => setShowTodoPupup(true)}
             className="ml-3 cursor-pointer border-none bg-none text-base transition-colors duration-300 ease-in-out hover:text-green-500"

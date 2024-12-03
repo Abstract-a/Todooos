@@ -13,7 +13,6 @@ function CommentsPage({ id }) {
     axios
       .get(`http://localhost:5000/api/comments/${id}`)
       .then((response) => {
-        // console.log(response.data);
         setComments(response.data);
         setLoading(false);
       })
@@ -38,17 +37,24 @@ function CommentsPage({ id }) {
   const handleDeleteComment = (id) => {
     setComments((prev) => prev.filter((comment) => comment._id != id));
   };
+
+  const sortedComments = (comments) => {
+    return comments.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+    );
+  };
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="z-[1000] h-[560px] w-[500px] rounded-md bg-gray-200"
+      className="z-[1000] w-[500px] min-w-[384px] rounded-md bg-gray-200 md:h-[560px]"
     >
       {loading ? (
         <Spinner />
       ) : (
         <div className="flex h-full w-full flex-col items-start justify-center">
+          <AddComment onAddComment={handleAddComment} id={id} />
           <div className="mt-4 flex h-full w-full flex-col items-start justify-start overflow-auto overflow-x-hidden">
-            {comments.map((comment) => (
+            {sortedComments(comments).map((comment) => (
               <SingleComment
                 comment={comment}
                 key={comment._id}
@@ -57,7 +63,6 @@ function CommentsPage({ id }) {
               />
             ))}
           </div>
-          <AddComment onAddComment={handleAddComment} id={id} />
         </div>
       )}
     </div>

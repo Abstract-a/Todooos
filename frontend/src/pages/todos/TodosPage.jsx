@@ -81,7 +81,7 @@ function TodosPage() {
   };
 
   return (
-    <div className="z-[900] h-[500px] max-w-[600px] overflow-auto rounded-xl bg-[#ececec] p-5 text-center shadow-md">
+    <div className="z-[900] h-screen w-screen min-w-[320px] overflow-auto rounded-xl bg-[#d6d6d6] p-5 text-center shadow-md sm:h-[500px] sm:max-w-[600px]">
       {loading ? (
         <Spinner />
       ) : (
@@ -89,7 +89,7 @@ function TodosPage() {
           <div className="flex items-center justify-between pb-4">
             <SearchBar onSearch={handleSearch} />
             <button
-              className="cursor-pointer rounded-md border-none bg-green-500 px-6 py-3 text-base text-white transition-all duration-500 ease-in-out hover:bg-green-600"
+              className="cursor-pointer rounded-md border-none bg-green-500 px-6 py-3 text-base text-white transition-all duration-500 ease-in-out hover:bg-green-600 md:mr-0"
               onClick={() => setShowAddTodoPopup(true)}
             >
               Add

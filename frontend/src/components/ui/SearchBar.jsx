@@ -11,7 +11,7 @@ function SearchBar({ onSearch }) {
   };
 
   return (
-    <div className="w-[400px]">
+    <div className="mr-4 w-[400px] md:mx-0">
       <input
         className="w-full rounded-md p-3"
         type="text"

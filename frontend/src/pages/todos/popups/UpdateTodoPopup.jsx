@@ -41,12 +41,15 @@ function UpdateTodoPopup({
   return (
     <div className="backdrop" onClick={onCancel}>
       <div
-        className="fixed left-[50%] top-[50%] z-[1000] flex w-[90%] max-w-[500px] -translate-x-1/2 -translate-y-1/2 transform flex-col gap-3 rounded-lg bg-gray-200 p-5 shadow-md"
+        className="fixed left-[50%] top-[50%] z-[1000] flex h-screen w-screen -translate-x-1/2 -translate-y-1/2 transform flex-col gap-3 rounded-lg bg-[#d6d6d6] p-5 shadow-md sm:h-auto sm:w-[90%] sm:max-w-[500px]"
         onClick={(e) => e.stopPropagation()}
       >
         <form onSubmit={handleSubmit}>
-          <label className="" htmlFor="title">
-            title
+          <label
+            className="text-[20px] font-bold tracking-wider"
+            htmlFor="title"
+          >
+            Title
           </label>
           <input
             type="text"
@@ -57,8 +60,11 @@ function UpdateTodoPopup({
             onChange={(e) => setTitle(e.target.value)}
             className="mb-3 w-full rounded-md border border-gray-100 p-3"
           />
-          <label className="" htmlFor="text">
-            text
+          <label
+            className="text-[20px] font-bold tracking-wider"
+            htmlFor="text"
+          >
+            Description
           </label>
           <textarea
             className="mb-3 min-h-80 w-full resize-none overflow-auto rounded-md border border-gray-100 p-3"
