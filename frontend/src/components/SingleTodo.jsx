@@ -83,7 +83,7 @@ function SingleTodo({
           </button>
           <div className="flex gap-3">
             <h3
-              className={`cursor-pointer text-left text-lg font-bold ${`${completed ? "italic text-gray-600 line-through opacity-70 transition-all duration-500 ease-in-out hover:text-gray-700 hover:opacity-100" : ""}`}`}
+              className={`cursor-pointer text-left text-[14px] font-bold md:text-lg ${`${completed ? "italic text-gray-600 line-through opacity-70 transition-all duration-500 ease-in-out hover:text-gray-700 hover:opacity-100" : ""}`}`}
               onClick={() => {
                 setShowTodoPupup(true);
               }}
