@@ -64,7 +64,7 @@ function SingleComment({ comment, onDeleteComment, onUpdateComment }) {
       {isEditing ? (
         <div className="mx-2 flex w-full rounded-sm bg-gray-400 py-3">
           <textarea
-            className="h-20 w-full resize-none rounded-md border-2 border-gray-900 px-2 text-left text-[13px]"
+            className="mx-auto w-[90%] rounded-md border-2 border-gray-900 px-2 text-left text-[13px]"
             type="text"
             value={currentComment}
             onChange={handleEditChange}

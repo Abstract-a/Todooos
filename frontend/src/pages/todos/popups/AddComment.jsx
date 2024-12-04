@@ -21,7 +21,7 @@ function AddComment({ id, onAddComment }) {
     }
   };
   return (
-    <div className="flex w-full gap-4 border border-red-500">
+    <div className="flex w-full gap-4">
       <form onSubmit={handleSubmit} className="flex w-full">
         <input
           className="m-3 w-[80%] rounded-md p-3"
