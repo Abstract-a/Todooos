@@ -46,7 +46,7 @@ function CommentsPage({ id }) {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="z-[1000] w-screen rounded-md bg-gray-200 md:h-[560px] md:w-[500px] md:min-w-[384px]"
+      className="z-[1000] h-[40%] w-screen rounded-md bg-gray-200 md:h-[560px] md:min-w-[384px] md:max-w-[500px]"
     >
       {loading ? (
         <Spinner />

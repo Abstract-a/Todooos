@@ -24,7 +24,7 @@ function ShowTodoPopup({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative z-[1000] flex w-screen min-w-[384px] max-w-[500px] flex-col items-center justify-center gap-3 rounded-lg bg-gray-200 p-5 shadow-md md:max-h-[560px] md:w-[90%]"
+        className="relative z-[1000] flex h-[60%] w-screen min-w-[384px] flex-col items-center justify-center gap-3 rounded-lg bg-gray-200 p-5 shadow-md md:h-[560px] md:w-[90%] md:max-w-[500px]"
       >
         <button
           onClick={onCancel}
@@ -33,7 +33,7 @@ function ShowTodoPopup({
           <ClearIcon className="text-[50px]" />
         </button>
 
-        <h3 className="my-4 text-xl font-bold">{initialTitle}</h3>
+        <h3 className="mb-4 mt-8 text-xl font-bold">{initialTitle}</h3>
         {/* <textarea value={initialText} disabled /> */}
         <div
           className={`mx-auto h-[400px] w-full ${expanded ? "overflow-y-scroll" : ""} overflow-y-hidden whitespace-normal break-words`}
@@ -51,7 +51,7 @@ function ShowTodoPopup({
           </span>
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex w-full justify-between gap-4">
           <div className="flex flex-col gap-1">
             <p className="text-xs text-gray-500">date of creation </p>
             <p className="text-xs text-gray-500">{formatTime(createdAt)}</p>
