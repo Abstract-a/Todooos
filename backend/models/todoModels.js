@@ -3,6 +3,11 @@ import { Schema } from 'mongoose';
 
 const TodosSchema = mongoose.Schema(
   {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
     title: {
       type: String,
       required: true,
@@ -24,6 +29,11 @@ const TodosSchema = mongoose.Schema(
 
 const CommentsSchema = mongoose.Schema(
   {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
     todo: {
       type: Schema.Types.ObjectId,
       ref: 'Todo',
