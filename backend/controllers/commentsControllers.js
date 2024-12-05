@@ -1,5 +1,5 @@
 import AsyncHandler from 'express-async-handler';
-import { Comments } from '../models/todoModels.js';
+import { Comments } from '../models/CommentModel.js';
 
 const getComments = AsyncHandler(async (req, res) => {
   const { todoId } = req.params;

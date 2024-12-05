@@ -66,6 +66,7 @@ function SingleComment({ comment, onDeleteComment, onUpdateComment }) {
           <textarea
             className="mx-auto w-[90%] rounded-md border-2 border-gray-900 px-2 text-left text-[13px]"
             type="text"
+            required
             value={currentComment}
             onChange={handleEditChange}
           />

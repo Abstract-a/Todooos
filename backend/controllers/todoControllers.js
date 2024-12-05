@@ -1,5 +1,6 @@
 import AsyncHandler from 'express-async-handler';
-import { Todo } from '../models/todoModels.js';
+import { Todo } from '../models/TodoModel.js';
+import { User } from '../models/UserModel.js';
 
 const getTodos = AsyncHandler(async (req, res) => {
   const todos = await Todo.find({});
