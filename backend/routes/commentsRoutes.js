@@ -8,11 +8,13 @@ import {
   deleteComment,
 } from '../controllers/commentsControllers.js';
 
+import { protect } from '../middleware/authMiddleware.js';
+
 const router = express.Router();
 
-router.get('/:todoId', getComments);
-router.post('/', setComment);
-router.put('/:id', updateComment);
-router.delete('/:id', deleteComment);
+router.get('/:todoId', protect, getComments);
+router.post('/', protect, setComment);
+router.put('/:id', protect, updateComment);
+router.delete('/:id', protect, deleteComment);
 
 export default router;
