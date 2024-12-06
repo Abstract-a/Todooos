@@ -4,14 +4,22 @@ import { useState, useEffect } from "react";
 import AddTodoPopup from "../todos/popups/AddTodoPopup.jsx";
 import SingleTodo from "../../components/SingleTodo.jsx";
 import SearchBar from "../../components/ui/SearchBar.jsx";
+import { useNavigate } from "react-router-dom";
 
 function TodosPage() {
   const [loading, setLoading] = useState(false);
   const [todos, setTodos] = useState([]);
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [showAddTodoPopup, setShowAddTodoPopup] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   function getTodos() {
+    const token = localStorage.getItem("jwt");
+    if (!token) {
+      navigate("/signin");
+      return;
+    }
     setLoading(true);
     axios
       .get("http://localhost:5000/api/todos")
@@ -22,13 +30,18 @@ function TodosPage() {
       })
       .catch((error) => {
         setLoading(false);
-        console.log(error);
+        setError(error.response?.data?.message || "Failed to fetch todos");
+
+        if (error.response?.status === 401) {
+          localStorage.removeItem("jwt");
+          navigate("/signin");
+        }
       });
   }
 
   useEffect(() => {
     getTodos();
-  }, []);
+  }, [navigate]);
 
   const handleAddTodo = (newTodo) => {
     setTodos((prev) => [...prev, newTodo]);
@@ -80,6 +93,11 @@ function TodosPage() {
     );
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    navigate("/signin");
+  };
+
   return (
     <div className="z-[900] h-screen w-screen min-w-[320px] overflow-auto rounded-xl bg-[#d6d6d6] p-5 text-center shadow-md sm:h-[500px] sm:max-w-[600px]">
       {loading ? (
@@ -113,6 +131,7 @@ function TodosPage() {
           />
         </div>
       )}
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }

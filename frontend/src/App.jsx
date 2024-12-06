@@ -6,6 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 function App() {
   const token = localStorage.getItem("jwt");
   return (
@@ -15,6 +16,10 @@ function App() {
         <Route
           path="/signin"
           element={!token ? <SignIn /> : <Navigate to="/todos" />}
+        />
+        <Route
+          path="/signup"
+          element={!token ? <SignUp /> : <Navigate to="/todos" />}
         />
         {/* Private routes */}
         <Route
