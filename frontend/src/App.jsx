@@ -1,9 +1,34 @@
 import TodosPage from "./pages/todos/TodosPage";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import SignIn from "./SignIn";
 function App() {
+  const token = localStorage.getItem("jwt");
   return (
-    <>
-      <TodosPage />
-    </>
+    <Router>
+      <Routes>
+        {/* Public routes */}
+        <Route
+          path="/signin"
+          element={!token ? <SignIn /> : <Navigate to="/todos" />}
+        />
+        {/* Private routes */}
+        <Route
+          path="/todo"
+          element={token ? <TodosPage /> : <Navigate to="/signin" />}
+        />
+        {/* Catch all */}
+        <Route
+          path="*"
+          element={<Navigate to={token ? "/todos" : "/signin"} />}
+        />
+        <TodosPage />
+      </Routes>
+    </Router>
   );
 }
 
