@@ -14,34 +14,31 @@ function TodosPage() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  function getTodos() {
-    const token = localStorage.getItem("jwt");
-    if (!token) {
-      navigate("/signin");
-      return;
-    }
-    setLoading(true);
-    axios
-      .get("http://localhost:5000/api/todos")
-      .then((response) => {
+  useEffect(() => {
+    const getTodos = async () => {
+      const token = localStorage.getItem("jwt");
+      if (!token) {
+        navigate("/signin");
+        return;
+      }
+      try {
+        setLoading(true);
+        const response = await axios.get("http://localhost:5000/api/todos");
         setTodos(response.data);
         setFilteredTodos(response.data);
         setLoading(false);
-      })
-      .catch((error) => {
+      } catch (err) {
         setLoading(false);
-        setError(error.response?.data?.message || "Failed to fetch todos");
+        setError(err.response?.data?.message || "Failed to fetch todos");
 
-        if (error.response?.status === 401) {
+        if (err.response?.status === 401) {
           localStorage.removeItem("jwt");
           navigate("/signin");
         }
-      });
-  }
-
-  useEffect(() => {
+      }
+    };
     getTodos();
-  }, [navigate]);
+  }, []);
 
   const handleAddTodo = (newTodo) => {
     setTodos((prev) => [...prev, newTodo]);

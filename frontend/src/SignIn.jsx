@@ -11,10 +11,15 @@ const SignIn = () => {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/users/login",
+        {
+          email,
+          password,
+        },
+      );
+      console.log(response.data);
+      console.log("Logged in successfully");
       localStorage.setItem("jwt", response.data.token);
       navigate("/todos");
     } catch (err) {
@@ -32,12 +37,14 @@ const SignIn = () => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <input
           type="password"
           placeholder="Passowrd"
           value={password}
           onChange={(e) => setPassord(e.target.value)}
+          required
         />
         <button type="submit">Sign In</button>
       </form>

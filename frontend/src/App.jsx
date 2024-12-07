@@ -23,7 +23,7 @@ function App() {
         />
         {/* Private routes */}
         <Route
-          path="/todo"
+          path="/todos"
           element={token ? <TodosPage /> : <Navigate to="/signin" />}
         />
         {/* Catch all */}
@@ -31,7 +31,7 @@ function App() {
           path="*"
           element={<Navigate to={token ? "/todos" : "/signin"} />}
         />
-        <TodosPage />
+        {/* <TodosPage /> */}
       </Routes>
     </Router>
   );

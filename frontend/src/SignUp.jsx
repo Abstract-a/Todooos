@@ -4,7 +4,8 @@ import axios from "axios";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
-  const [passowrd, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -14,14 +15,15 @@ const Signup = () => {
     setError("");
     setSuccess("");
     try {
-      const response = await axios.post("http://localhost:5000/register", {
+      const response = await axios.post("http://localhost:5000/api/users", {
+        name,
         email,
-        passowrd,
+        password,
       });
       if (response.status === 201) {
         setSuccess("Registration successful! You can now log in");
         setTimeout(() => {
-          navigate("/signin");
+          navigate("/todos");
         }, 2000);
       }
     } catch (error) {
@@ -39,6 +41,13 @@ const Signup = () => {
       {success && <p>{success}</p>}
       <form onSubmit={handleSignUp}>
         <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <input
           type="email"
           placeholder="Email"
           value={email}
@@ -49,7 +58,7 @@ const Signup = () => {
         <input
           type="password"
           placeholder="Password"
-          value={passowrd}
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
@@ -58,3 +67,5 @@ const Signup = () => {
     </div>
   );
 };
+
+export default Signup;
