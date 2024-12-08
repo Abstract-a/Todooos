@@ -12,7 +12,14 @@ const Signout = () => {
     navigate("/signin");
   };
 
-  return <button onClick={handleSignOut}>signout</button>;
+  return (
+    <button
+      className="font-semibold tracking-wider transition-all duration-300 ease-in-out hover:opacity-80"
+      onClick={handleSignOut}
+    >
+      Sign Out
+    </button>
+  );
 };
 
 export default Signout;

@@ -27,16 +27,16 @@ const SignIn = () => {
       navigate("/todos");
     } catch (err) {
       console.log(err);
-      setError("Failed to log in");
+      setError("Invalid email or password. Please try again.");
     }
   };
 
   return (
-    <div>
-      <h1>Sign in</h1>
-      {error && <p>{error}</p>}
-      <form onSubmit={handleSignIn}>
+    <div className="mx-auto mt-12 flex h-[calc(100vh-3rem)] w-screen flex-col gap-8 rounded-lg bg-gray-200 pt-40 shadow-lg sm:mt-0 sm:h-[400px] sm:w-[400px] sm:gap-4 sm:pt-0">
+      <h1 className="pt-6 text-center text-xl font-bold">Sign in</h1>
+      <form onSubmit={handleSignIn} className="flex flex-col gap-8 sm:gap-4">
         <input
+          className="mx-2 rounded-md border border-gray-400 p-2 text-lg font-medium tracking-wide"
           type="email"
           placeholder="Email"
           value={email}
@@ -44,13 +44,20 @@ const SignIn = () => {
           required
         />
         <input
+          className="mx-2 rounded-md border border-gray-400 p-2 text-lg font-medium tracking-wide"
           type="password"
           placeholder="Passowrd"
           value={password}
           onChange={(e) => setPassord(e.target.value)}
           required
         />
-        <button type="submit">Sign In</button>
+        {error && <p className="pl-2 text-left text-red-500">{error}</p>}
+        <button
+          className="mx-2 cursor-pointer rounded-lg border-none bg-blue-500 px-6 py-3 text-white transition-all duration-500 ease-in-out hover:bg-blue-600 hover:opacity-90"
+          type="submit"
+        >
+          Sign In
+        </button>
       </form>
     </div>
   );
