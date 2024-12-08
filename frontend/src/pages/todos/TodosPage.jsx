@@ -109,11 +109,6 @@ function TodosPage() {
     );
   };
 
-  const handleLogout = () => {
-    setToken(null);
-    navigate("/signin");
-  };
-
   return (
     <>
       <div className="z-[900] h-screen w-screen min-w-[320px] overflow-auto rounded-xl bg-[#d6d6d6] p-5 text-center shadow-md sm:h-[500px] sm:max-w-[600px]">
@@ -149,7 +144,6 @@ function TodosPage() {
           </div>
         )}
       </div>
-      <button onClick={handleLogout}>Logout</button>
     </>
   );
 }

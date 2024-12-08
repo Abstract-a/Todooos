@@ -9,11 +9,14 @@ import {
 } from "react-router-dom";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import Navbar from "./Navbar";
+
 function App() {
   const { token } = useContext(AuthContext);
 
   return (
     <Router>
+      <Navbar />
       <Routes>
         {/* Public routes */}
         <Route
