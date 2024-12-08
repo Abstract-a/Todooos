@@ -45,7 +45,7 @@ function ShowTodoPopup({
           </p>
           <span
             onClick={() => setExpanded(!expanded)}
-            className="mt-2 inline-block cursor-pointer text-blue-500"
+            className={`mt-2 inline-block cursor-pointer text-blue-500 ${initialText.length < 260 ? "hidden" : ""}`}
           >
             {expanded ? "Show Less" : "Show More"}
           </span>
