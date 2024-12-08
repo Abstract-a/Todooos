@@ -8,14 +8,23 @@ function AddTodoPopup({ onAddTodo, show, onCancel }) {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
 
+  const token = localStorage.getItem("jwt");
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:5000/api/todos", {
-        title,
-        text,
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/todos",
+        {
+          title,
+          text,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
       // console.log('success', response.data);
       onAddTodo(response.data);
       setLoading(false);

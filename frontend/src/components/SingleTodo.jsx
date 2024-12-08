@@ -26,12 +26,19 @@ function SingleTodo({
   const [showTodoPupup, setShowTodoPupup] = useState(false);
   const [isCompleted, setIsCompleted] = useState(completed);
   const [updateDate, setUpdateDate] = useState(updatedAt);
+  const token = localStorage.getItem("jwt");
 
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
         `http://localhost:5000/api/todos/${_id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
+
       onDeleteTodo(response.data.id);
     } catch (error) {
       console.error(error);
@@ -60,6 +67,11 @@ function SingleTodo({
           title,
           text,
           completed: !isCompleted,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
       );
 

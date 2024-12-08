@@ -3,15 +3,24 @@ import axios from "axios";
 function AddComment({ id, onAddComment }) {
   const [loading, setLoading] = useState(false);
   const [comment, setComment] = useState("");
+  const token = localStorage.getItem("jwt");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:5000/api/comments", {
-        todo: id,
-        comment: comment,
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/comments",
+        {
+          todo: id,
+          comment: comment,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
       onAddComment(response.data);
       setLoading(false);
       setComment("");

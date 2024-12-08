@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./provider/AuthProvider";
 import axios from "axios";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassord] = useState("");
   const [error, setError] = useState("");
+  const { setToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
@@ -18,12 +20,14 @@ const SignIn = () => {
           password,
         },
       );
-      console.log(response.data);
-      console.log("Logged in successfully");
+      //console.log(response.data);
+
       localStorage.setItem("jwt", response.data.token);
+      setToken(response.data.token);
       navigate("/todos");
     } catch (err) {
-      setError(err.response?.data?.message || "Failed to log in");
+      console.log(err);
+      setError("Failed to log in");
     }
   };
 

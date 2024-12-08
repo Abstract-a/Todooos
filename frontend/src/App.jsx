@@ -1,4 +1,6 @@
 import TodosPage from "./pages/todos/TodosPage";
+import { useContext } from "react";
+import { AuthContext } from "./provider/AuthProvider";
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,7 +10,8 @@ import {
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 function App() {
-  const token = localStorage.getItem("jwt");
+  const { token } = useContext(AuthContext);
+
   return (
     <Router>
       <Routes>

@@ -4,6 +4,9 @@ import { User } from '../models/UserModel.js';
 
 const getTodos = AsyncHandler(async (req, res) => {
   const todos = await Todo.find({ user: req.user.id });
+  if (!todos) {
+    res.status(401).json({ error: 'Todos not found' });
+  }
   res.status(200).json(todos);
 });
 

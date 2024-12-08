@@ -8,10 +8,15 @@ import AddComment from "../todos/popups/AddComment";
 function CommentsPage({ id }) {
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
+  const token = localStorage.getItem("jwt");
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/api/comments/${id}`)
+      .get(`http://localhost:5000/api/comments/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setComments(response.data);
         setLoading(false);

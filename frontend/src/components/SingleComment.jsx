@@ -10,6 +10,7 @@ function SingleComment({ comment, onDeleteComment, onUpdateComment }) {
   const [currentComment, setCurrentComment] = useState(comment.comment);
   const [loading, setLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const token = localStorage.getItem("jwt");
   //const [tempContent, setTempContent] = useState("");
   const id = comment._id;
   const handleDelete = async () => {
@@ -17,6 +18,12 @@ function SingleComment({ comment, onDeleteComment, onUpdateComment }) {
       //console.log(comment._id);
       const response = await axios.delete(
         `http://localhost:5000/api/comments/${id}`,
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
       //console.log(response.data);
       onDeleteComment(response.data.id);
@@ -43,6 +50,11 @@ function SingleComment({ comment, onDeleteComment, onUpdateComment }) {
         `http://localhost:5000/api/comments/${id}`,
         {
           comment: currentComment,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
       );
       //console.log(response.data);

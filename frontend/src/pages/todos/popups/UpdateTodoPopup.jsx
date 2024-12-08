@@ -13,6 +13,7 @@ function UpdateTodoPopup({
   const [title, setTitle] = useState(initialTitle);
   const [text, setText] = useState(initialText);
   const [loading, setLoading] = useState(false);
+  const token = localStorage.getItem("jwt");
 
   let handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +22,11 @@ function UpdateTodoPopup({
       const response = await axios.put(
         `http://localhost:5000/api/todos/${id}`,
         { title, text },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
       onUpdateTodo(response.data);
       setLoading(false);
