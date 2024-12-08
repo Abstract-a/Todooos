@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { formatTime } from "../../../utils/dateHelper.js";
 import ClearIcon from "@mui/icons-material/Clear";
 import CommentsPage from "../../comments/CommentsPage.jsx";
@@ -14,6 +14,18 @@ function ShowTodoPopup({
   id,
 }) {
   const [expanded, setExpanded] = useState(false);
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        onCancel();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onCancel]);
 
   if (!show) return null;
 

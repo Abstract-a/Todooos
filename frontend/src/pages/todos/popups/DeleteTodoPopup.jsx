@@ -1,5 +1,19 @@
+/* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
+import { useEffect } from "react";
 function DeleteTodoPopup({ show, onConfirm, onCancel }) {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        onCancel();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onCancel]);
   if (!show) return null;
   return (
     <div className="backdrop" onClick={onCancel}>

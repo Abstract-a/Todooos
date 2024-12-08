@@ -13,6 +13,7 @@ function TodosPage() {
   const [todos, setTodos] = useState([]);
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [showAddTodoPopup, setShowAddTodoPopup] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState("");
   const navigate = useNavigate();
 

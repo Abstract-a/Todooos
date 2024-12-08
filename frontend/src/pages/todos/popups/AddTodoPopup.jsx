@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 // import Spinner from '../Spinner';
 
@@ -7,6 +7,19 @@ function AddTodoPopup({ onAddTodo, show, onCancel }) {
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        onCancel();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onCancel]);
 
   const token = localStorage.getItem("jwt");
   const handleSubmit = async (e) => {

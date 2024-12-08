@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import DeleteTodoPopup from "../pages/todos/popups/DeleteTodoPopup";
 import UpdateTodoPopup from "../pages/todos/popups/UpdateTodoPopup";
 import ShowTodoPopup from "../pages/todos/popups/ShowTodoPopup";
@@ -9,7 +9,6 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 function SingleTodo({
   onDeleteTodo,
@@ -73,7 +72,8 @@ function SingleTodo({
     setShowTodoPupup(false);
   };
 
-  const handleCompleted = async () => {
+  const handleCompleted = async (e) => {
+    e.stopPropagation();
     try {
       const response = await axios.put(
         `http://localhost:5000/api/todos/${_id}`,
@@ -99,7 +99,12 @@ function SingleTodo({
 
   return (
     <div className="m-auto">
-      <li className="mb-3 flex items-center justify-between rounded-md bg-slate-100 p-4 shadow-md">
+      <li
+        onClick={() => {
+          setShowTodoPupup(true);
+        }}
+        className="mb-3 flex cursor-pointer items-center justify-between rounded-md bg-slate-100 p-4 shadow-md"
+      >
         <div className="flex gap-3">
           <button
             onClick={handleCompleted}
@@ -110,31 +115,37 @@ function SingleTodo({
           <div className="flex gap-3">
             <h3
               className={`cursor-pointer text-left text-[14px] font-bold md:text-lg ${`${completed ? "italic text-gray-600 line-through opacity-70 transition-all duration-500 ease-in-out hover:text-gray-700 hover:opacity-100" : ""}`}`}
-              onClick={() => {
-                setShowTodoPupup(true);
-              }}
             >
               {title}
             </h3>
           </div>
         </div>
-        {/* <div className="todo-container-center"></div> */}
+
         <div className={`flex flex-row gap-1`}>
-          <button
-            onClick={() => setShowTodoPupup(true)}
-            className="ml-3 cursor-pointer border-none bg-none text-base transition-colors duration-300 ease-in-out hover:text-green-500"
+          {/* <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowTodoPupup(true);
+            }}
+            className="ml-3 hidden cursor-pointer border-none bg-none text-base transition-colors duration-300 ease-in-out hover:text-green-500 sm:block"
           >
             <VisibilityIcon />
-          </button>
+          </button> */}
           <button
-            onClick={() => setshowConfirmUpdatePopup(true)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setshowConfirmUpdatePopup(true);
+            }}
             disabled={isCompleted}
-            className="ml-3 cursor-pointer border-none bg-none text-base transition-colors duration-300 ease-in-out hover:text-green-500"
+            className={`ml-3 cursor-pointer border-none bg-none text-base transition-colors duration-300 ease-in-out hover:text-green-500`}
           >
-            <ModeEditIcon />
+            <ModeEditIcon style={{ color: `${completed ? "#4b5366" : ""}` }} />
           </button>
           <button
-            onClick={() => setShowConfirmDeletePopup(true)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowConfirmDeletePopup(true);
+            }}
             className="ml-3 cursor-pointer border-none bg-none text-base transition-colors duration-300 ease-in-out hover:text-red-600"
           >
             <DeleteForeverIcon />

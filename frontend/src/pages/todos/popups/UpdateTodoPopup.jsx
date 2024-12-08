@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 function UpdateTodoPopup({
@@ -14,6 +14,19 @@ function UpdateTodoPopup({
   const [text, setText] = useState(initialText);
   const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("jwt");
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        onCancel();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onCancel]);
 
   let handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,7 +60,7 @@ function UpdateTodoPopup({
   return (
     <div className="backdrop" onClick={onCancel}>
       <div
-        className="fixed left-[50%] top-[50%] z-[1000] flex h-screen w-screen -translate-x-1/2 -translate-y-1/2 transform flex-col gap-3 rounded-lg bg-[#d6d6d6] p-5 shadow-md sm:h-auto sm:w-[90%] sm:max-w-[500px]"
+        className="fixed left-[50%] top-[50%] z-[1000] mt-12 flex h-screen w-full -translate-x-1/2 -translate-y-1/2 transform flex-col gap-3 bg-[#d6d6d6] p-5 shadow-md sm:h-auto sm:w-[90%] sm:max-w-[500px] sm:rounded-lg"
         onClick={(e) => e.stopPropagation()}
       >
         <form onSubmit={handleSubmit}>
