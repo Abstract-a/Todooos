@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DeleteTodoPopup from "../pages/todos/popups/DeleteTodoPopup";
 import UpdateTodoPopup from "../pages/todos/popups/UpdateTodoPopup";
 import ShowTodoPopup from "../pages/todos/popups/ShowTodoPopup";
@@ -9,6 +9,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 function SingleTodo({
   onDeleteTodo,
@@ -26,7 +27,20 @@ function SingleTodo({
   const [showTodoPupup, setShowTodoPupup] = useState(false);
   const [isCompleted, setIsCompleted] = useState(completed);
   const [updateDate, setUpdateDate] = useState(updatedAt);
+  // const [showButton, setShowButton] = useState(window.innerWidth <= 639);
+  // const [showPopup, setShowPopup] = useState(false);
   const token = localStorage.getItem("jwt");
+
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setShowButton(window.innerWidth <= 638);
+  //   };
+
+  //   window.addEventListener("resize", handleResize);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
   const handleDelete = async () => {
     try {
@@ -105,7 +119,7 @@ function SingleTodo({
           </div>
         </div>
         {/* <div className="todo-container-center"></div> */}
-        <div className="flex flex-col gap-1 sm:flex-row">
+        <div className={`flex flex-row gap-1`}>
           <button
             onClick={() => setShowTodoPupup(true)}
             className="ml-3 cursor-pointer border-none bg-none text-base transition-colors duration-300 ease-in-out hover:text-green-500"
