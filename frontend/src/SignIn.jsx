@@ -46,7 +46,7 @@ const SignIn = () => {
         <input
           className="mx-2 rounded-md border border-gray-400 p-2 text-lg font-medium tracking-wide"
           type="password"
-          placeholder="Passowrd"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassord(e.target.value)}
           required
