@@ -12,6 +12,7 @@ function ShowTodoPopup({
   onCancel,
   show,
   id,
+  isCompleted,
 }) {
   const [expanded, setExpanded] = useState(false);
   useEffect(() => {
@@ -72,10 +73,12 @@ function ShowTodoPopup({
             <p className="text-xs text-gray-500">latest update </p>
             <p className="text-xs text-gray-500">{formatTime(updatedAt)}</p>
           </div>
-          <div className="flex flex-col gap-1">
-            <p className="text-xs text-gray-500">complete at </p>
-            <p className="text-xs text-gray-500">{formatTime(completedAt)}</p>
-          </div>
+          {isCompleted && (
+            <div className="flex flex-col gap-1">
+              <p className="text-xs text-gray-500">complete at </p>
+              <p className="text-xs text-gray-500">{formatTime(completedAt)}</p>
+            </div>
+          )}
         </div>
       </div>
       <CommentsPage id={id} />

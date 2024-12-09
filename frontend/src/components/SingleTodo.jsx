@@ -160,6 +160,7 @@ function SingleTodo({
         createdAt={createdAt}
         updatedAt={updatedAt}
         completedAt={updateDate}
+        isCompleted={isCompleted}
       />
     </div>
   );
