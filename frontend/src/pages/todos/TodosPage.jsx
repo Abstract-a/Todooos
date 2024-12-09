@@ -6,6 +6,7 @@ import SingleTodo from "../../components/SingleTodo.jsx";
 import SearchBar from "../../components/ui/SearchBar.jsx";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider.jsx";
+import { API_BASE_URL } from "../../constants.js";
 
 function TodosPage() {
   const { token, setToken } = useContext(AuthContext);
@@ -29,7 +30,7 @@ function TodosPage() {
 
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:5000/api/todos", {
+        const response = await axios.get(`${API_BASE_URL}/api/todos`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

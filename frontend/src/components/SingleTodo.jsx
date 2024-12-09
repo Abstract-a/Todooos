@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
 import { useState } from "react";
+import { API_BASE_URL } from "../constants";
 import DeleteTodoPopup from "../pages/todos/popups/DeleteTodoPopup";
 import UpdateTodoPopup from "../pages/todos/popups/UpdateTodoPopup";
 import ShowTodoPopup from "../pages/todos/popups/ShowTodoPopup";
@@ -8,7 +9,6 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 
 function SingleTodo({
   onDeleteTodo,
@@ -26,31 +26,16 @@ function SingleTodo({
   const [showTodoPupup, setShowTodoPupup] = useState(false);
   const [isCompleted, setIsCompleted] = useState(completed);
   const [updateDate, setUpdateDate] = useState(updatedAt);
-  // const [showButton, setShowButton] = useState(window.innerWidth <= 639);
-  // const [showPopup, setShowPopup] = useState(false);
+
   const token = localStorage.getItem("jwt");
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setShowButton(window.innerWidth <= 638);
-  //   };
-
-  //   window.addEventListener("resize", handleResize);
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, []);
 
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(
-        `http://localhost:5000/api/todos/${_id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      const response = await axios.delete(`${API_BASE_URL}/api/todos/${_id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      );
+      });
 
       onDeleteTodo(response.data.id);
     } catch (error) {
@@ -76,7 +61,7 @@ function SingleTodo({
     e.stopPropagation();
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/todos/${_id}`,
+        `${API_BASE_URL}/api/todos/${_id}`,
         {
           title,
           text,

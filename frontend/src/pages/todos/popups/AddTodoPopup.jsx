@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import axios from "axios";
-// import Spinner from '../Spinner';
+import { API_BASE_URL } from "../../../constants";
 
 function AddTodoPopup({ onAddTodo, show, onCancel }) {
   const [loading, setLoading] = useState(false);
@@ -27,7 +27,7 @@ function AddTodoPopup({ onAddTodo, show, onCancel }) {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/todos",
+        `${API_BASE_URL}/api/todos`,
         {
           title,
           text,

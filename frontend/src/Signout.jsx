@@ -3,6 +3,7 @@ import { AuthContext } from "./provider/AuthProvider.jsx";
 import { useNavigate } from "react-router-dom";
 
 const Signout = () => {
+  // eslint-disable-next-line no-unused-vars
   const { token, setToken } = useContext(AuthContext);
   const navigate = useNavigate();
 

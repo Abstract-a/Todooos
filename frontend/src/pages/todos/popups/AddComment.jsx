@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../../../constants";
+
 function AddComment({ id, onAddComment }) {
   const [loading, setLoading] = useState(false);
   const [comment, setComment] = useState("");
@@ -10,7 +12,7 @@ function AddComment({ id, onAddComment }) {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/comments",
+        `${API_BASE_URL}/api/comments`,
         {
           todo: id,
           comment: comment,

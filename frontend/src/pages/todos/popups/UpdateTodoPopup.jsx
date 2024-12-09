@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../../../constants";
 
 function UpdateTodoPopup({
   show,
@@ -33,7 +34,7 @@ function UpdateTodoPopup({
     setLoading(true);
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/todos/${id}`,
+        `${API_BASE_URL}/api/todos/${id}`,
         { title, text },
         {
           headers: {

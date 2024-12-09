@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import DeleteComment from "../pages/todos/popups/DeleteComment";
 import { formatTime } from "../utils/dateHelper";
+import { API_BASE_URL } from "../constants";
 
 function SingleComment({ comment, onDeleteComment, onUpdateComment }) {
   const [showConfirmDeletePopup, setShowConfirmDeletePopup] = useState(false);
@@ -17,7 +18,7 @@ function SingleComment({ comment, onDeleteComment, onUpdateComment }) {
     try {
       //console.log(comment._id);
       const response = await axios.delete(
-        `http://localhost:5000/api/comments/${id}`,
+        `${API_BASE_URL}/api/comments/${id}`,
 
         {
           headers: {
@@ -47,7 +48,7 @@ function SingleComment({ comment, onDeleteComment, onUpdateComment }) {
     setLoading(true);
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/comments/${id}`,
+        `${API_BASE_URL}/api/comments/${id}`,
         {
           comment: currentComment,
         },

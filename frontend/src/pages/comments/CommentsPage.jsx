@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Spinner from "../../components/ui/Spinner";
 import SingleComment from "../../components/SingleComment";
 import AddComment from "../todos/popups/AddComment";
+import { API_BASE_URL } from "../../constants";
 
 function CommentsPage({ id }) {
   const [loading, setLoading] = useState(false);
@@ -12,7 +13,7 @@ function CommentsPage({ id }) {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/api/comments/${id}`, {
+      .get(`${API_BASE_URL}/api/comments/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
