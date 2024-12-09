@@ -10,7 +10,6 @@ const SignIn = () => {
   const [error, setError] = useState("");
   const { setToken } = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log(API_BASE_URL);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
